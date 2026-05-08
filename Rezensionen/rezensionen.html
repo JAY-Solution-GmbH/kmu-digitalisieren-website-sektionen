@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bewertungen</title>
+<style>
+  /* ===== Bewertungssektion ===== */
+  .reviews-section {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 40px;
+    flex-wrap: wrap;
+    padding: 10px 20px;
+    background: #ffffff;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .review-card {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 24px 32px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    min-width: 320px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .review-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10);
+  }
+
+  .review-card:hover .bar-fill.trustpilot {
+    background: #00a06b;
+  }
+
+  .review-card:hover .bar-fill.google {
+    background: #f5b400;
+  }
+
+  /* Linke Spalte (Score + Sterne) */
+  .review-summary {
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .review-score {
+    font-size: 48px;
+    font-weight: 700;
+    color: #1a1a1a;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .review-label {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 10px;
+  }
+
+  .review-stars {
+    font-size: 20px;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+    white-space: nowrap;
+  }
+
+  .review-stars.trustpilot { color: #00b67a; }
+  .review-stars.google     { color: #fbbc05; }
+
+  .review-count {
+    font-size: 13px;
+    color: #555;
+  }
+
+  /* Rechte Spalte (Balken) */
+  .review-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-grow: 1;
+    min-width: 180px;
+  }
+
+  .bar-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .bar-label {
+    font-size: 13px;
+    color: #555;
+    width: 60px;
+    flex-shrink: 0;
+  }
+
+  .bar-track {
+    flex-grow: 1;
+    height: 8px;
+    background: #e5e5e5;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .bar-fill.trustpilot { background: #00b67a; }
+  .bar-fill.google     { background: #fbbc05; }
+
+  /* Halber Stern (für Trustpilot 4,7) */
+  .star-half {
+    background: linear-gradient(90deg, currentColor 70%, #d8d8d8 70%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .review-card {
+      flex-direction: column;
+      gap: 16px;
+      width: 100%;
+      padding: 20px;
+    }
+    .review-bars { width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<section class="reviews-section">
+
+  <!-- Trustpilot -->
+  <div class="review-card">
+    <div class="review-summary">
+      <div class="review-score" data-target="4.7" data-decimals="1">0,0</div>
+      <div class="review-label">Trustpilot</div>
+      <div class="review-stars trustpilot">
+        ★★★★<span class="star-half">★</span>
+      </div>
+      <div class="review-count"><span data-target="23" data-decimals="0">0</span> Bewertungen</div>
+    </div>
+    <div class="review-bars">
+      <div class="bar-row">
+        <span class="bar-label">5 Sterne</span>
+        <div class="bar-track"><div class="bar-fill trustpilot" data-width="80" style="width: 0%;"></div></div>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">4 Sterne</span>
+        <div class="bar-track"><div class="bar-fill trustpilot" data-width="12" style="width: 0%;"></div></div>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">3 Sterne</span>
+        <div class="bar-track"><div class="bar-fill trustpilot" style="width: 0%;"></div></div>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">2 Sterne</span>
+        <div class="bar-track"><div class="bar-fill trustpilot" style="width: 0%;"></div></div>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">1 Stern</span>
+        <div class="bar-track"><div class="bar-fill trustpilot" style="width: 0%;"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Google -->
+  <div class="review-card">
+    <div class="review-summary">
+      <div class="review-score" data-target="5.0" data-decimals="1">0,0</div>
+      <div class="review-label">Google</div>
+      <div class="review-stars google">★★★★★</div>
+      <div class="review-count"><span data-target="87" data-decimals="0">0</span> Bewertungen</div>
+    </div>
+    <div class="review-bars">
+      <div class="bar-row">
+        <span class="bar-label">5 Sterne</span>
+        <div class="bar-track"><div class="bar-fill google" data-width="100" style="width: 0%;"></div></div>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">4 Sterne</span>
+        <div class="bar-track"><div class="bar-fill google" style="width: 0%;"></div></div>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">3 Sterne</span>
+        <div class="bar-track"><div class="bar-fill google" style="width: 0%;"></div></div>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">2 Sterne</span>
+        <div class="bar-track"><div class="bar-fill google" style="width: 0%;"></div></div>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">1 Stern</span>
+        <div class="bar-track"><div class="bar-fill google" style="width: 0%;"></div></div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<script>
+  (function() {
+    const section = document.querySelector('.reviews-section');
+    if (!section) return;
+
+    let hasAnimated = false;
+
+    function animateNumber(el) {
+      const target = parseFloat(el.dataset.target);
+      const decimals = parseInt(el.dataset.decimals, 10) || 0;
+      const duration = 1500; // ms
+      const startTime = performance.now();
+
+      function step(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        // ease-out cubic
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const value = target * eased;
+        // In Deutschland Komma als Dezimaltrenner
+        el.textContent = value.toFixed(decimals).replace('.', ',');
+        if (progress < 1) requestAnimationFrame(step);
+        else el.textContent = target.toFixed(decimals).replace('.', ',');
+      }
+      requestAnimationFrame(step);
+    }
+
+    function animateBars() {
+      const bars = section.querySelectorAll('.bar-fill[data-width]');
+      bars.forEach(bar => {
+        // kleine Verzögerung, damit Balken nach den Zahlen "atmen"
+        setTimeout(() => {
+          bar.style.width = bar.dataset.width + '%';
+        }, 200);
+      });
+    }
+
+    function runAnimation() {
+      if (hasAnimated) return;
+      hasAnimated = true;
+      const numbers = section.querySelectorAll('[data-target]');
+      numbers.forEach(animateNumber);
+      animateBars();
+    }
+
+    // IntersectionObserver: triggert beim ersten Sichtbarwerden
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            runAnimation();
+            observer.disconnect();
+          }
+        });
+      }, { threshold: 0.4 });
+      observer.observe(section);
+    } else {
+      // Fallback für sehr alte Browser
+      runAnimation();
+    }
+  })();
+</script>
+
+</body>
+</html>
