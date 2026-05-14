@@ -135,17 +135,41 @@
     }
 
     /* ================================================================
+       iFrame Desktop-Skalierung
+       Rendert bei 1440px Breite und skaliert auf Container-Breite
+       ================================================================ */
+    function scaleIframes() {
+        var wraps = document.querySelectorAll('.ref-iframe-wrap');
+        wraps.forEach(function (wrap) {
+            var iframe = wrap.querySelector('iframe');
+            if (!iframe) return;
+            var containerWidth = wrap.clientWidth;
+            var scale = containerWidth / 1440;
+            iframe.style.transform = 'scale(' + scale + ')';
+            iframe.style.height = (wrap.clientHeight / scale) + 'px';
+        });
+    }
+
+    /* ================================================================
        Init
        ================================================================ */
     function init() {
         initToggle();
         initDetailsToggles();
+        scaleIframes();
 
         // Nur den aktiven Tab animieren
         var activeTab = document.querySelector('.ref-tab-content.is-active');
         if (activeTab) {
             initScrollAnimations(activeTab);
         }
+
+        // Re-scale iframes on resize
+        var resizeTimer;
+        window.addEventListener('resize', function () {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(scaleIframes, 150);
+        });
     }
 
     if (document.readyState === 'loading') {

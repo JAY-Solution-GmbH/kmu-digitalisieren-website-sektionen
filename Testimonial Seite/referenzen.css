@@ -87,7 +87,7 @@
 
 /* --- Einzelne Referenz-Sektion --- */
 .ref-website-section {
-    padding: 0 0 20px 0;
+    padding: 0 0 50px 0;
 }
 
 .ref-website-grid {
@@ -213,7 +213,7 @@
     letter-spacing: 0.2px;
 }
 
-/* iFrame-Vorschau – Laptop-Proportionen (16:10) */
+/* iFrame-Vorschau – Desktop-Ansicht im Laptop-Format */
 .ref-iframe-wrap {
     width: 100%;
     aspect-ratio: 16 / 10;
@@ -230,11 +230,19 @@
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.22);
 }
 
+/* Desktop-Ansicht erzwingen: iFrame rendert bei 1440px Breite
+   und wird per transform auf die Container-Breite skaliert */
 .ref-iframe-wrap iframe {
-    width: 100%;
-    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1440px;
+    height: 900px;
     border: none;
     display: block;
+    transform-origin: 0 0;
+    /* Skalierung wird per JS gesetzt, Fallback: */
+    transform: scale(0.38);
 }
 
 .ref-iframe-hint {
@@ -396,10 +404,21 @@
 
 .ref-video-info h3 {
     font-size: 1.8rem;
-    margin: 0 0 22px 0;
+    margin: 0 0 10px 0;
     color: #ffffff;
     line-height: 1.15;
     font-weight: 700;
+}
+
+/* Ziel-Label in Grün */
+.ref-video-goal {
+    display: inline-block;
+    font-family: 'Cabin Condensed', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #4caf50;
+    letter-spacing: 0.3px;
+    margin-bottom: 18px;
 }
 
 /* Highlight-Ergebnis – präsenter und größer */
