@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Referenzen – KMU Digitalisieren</title>
+    <meta name="description" content="Unsere Referenzen: Webseiten-Projekte und Video-Testimonials zufriedener Kunden von KMU Digitalisieren.">
+    <link href="https://fonts.googleapis.com/css2?family=Cabin+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="referenzen.css">
+    <style>
+        /* Reset für die lokale Vorschau */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Cabin Condensed', sans-serif;
+            background: #ffffff;
+            color: #000;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hier wird der Inhalt der referenzen.html eingebettet -->
+    <div id="ref-root"></div>
+
+    <script>
+        // Lade die HTML-Datei inline (für lokale Vorschau)
+        fetch('referenzen.html')
+            .then(function(r) { return r.text(); })
+            .then(function(html) {
+                document.getElementById('ref-root').innerHTML = html;
+                // Lade dann das JS
+                var s = document.createElement('script');
+                s.src = 'referenzen.js';
+                document.body.appendChild(s);
+            });
+    </script>
+
+</body>
+</html>
