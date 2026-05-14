@@ -364,7 +364,7 @@
 
 /* Info-Karte (leichteres Design) */
 .ref-video-info {
-    background: radial-gradient(circle at center, rgb(70, 68, 111) 0%, rgb(0, 0, 26) 100%);
+    background: linear-gradient(135deg, rgb(70, 68, 111) 0%, #191B41 50%, rgb(0, 0, 26) 100%);
     color: #ffffff;
     padding: 40px 36px;
     display: flex;
