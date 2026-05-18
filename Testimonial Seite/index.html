@@ -5,45 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Referenzen – KMU Digitalisieren</title>
     <link href="https://fonts.googleapis.com/css2?family=Cabin+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="referenzen.css">
+    <link rel="stylesheet" href="referenzen.css?v=2">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Cabin Condensed', sans-serif;
             background: #ffffff;
             color: #000;
+            padding: 40px 20px;
         }
     </style>
 </head>
 <body>
 
-<!-- Eingebetteter Inhalt -->
-<div class="ref-page">
-
-  <!-- ===== Toggle Switch ===== -->
-  <div class="ref-toggle-wrapper">
-    <div class="ref-toggle" id="refToggle">
-      <div class="ref-toggle-pill" id="refTogglePill"></div>
-      <button class="ref-toggle-btn is-active" data-tab="websites" id="btnWebsites">Webseiten</button>
-      <button class="ref-toggle-btn" data-tab="videos" id="btnVideos">Kunden- &amp; Mitarbeitergewinnung</button>
-    </div>
-  </div>
-
-  <!-- REST DER SEITE WIRD PER JS GELADEN -->
-  <div id="ref-content"></div>
-
-</div>
-
 <script>
-// Load the fragment content (everything after the toggle in referenzen.html)
-fetch('referenzen.html')
-  .then(r => r.text())
-  .then(html => {
-    // Replace the entire ref-page with the fragment
-    document.querySelector('.ref-page').outerHTML = html;
-    // Re-run the JS
+// Cache-Busting: Timestamp anhängen damit keine alte Version geladen wird
+fetch('referenzen.html?v=' + Date.now())
+  .then(function(r) { return r.text(); })
+  .then(function(html) {
+    document.body.insertAdjacentHTML('beforeend', html);
     var s = document.createElement('script');
-    s.src = 'referenzen.js';
+    s.src = 'referenzen.js?v=' + Date.now();
     document.body.appendChild(s);
   });
 </script>
