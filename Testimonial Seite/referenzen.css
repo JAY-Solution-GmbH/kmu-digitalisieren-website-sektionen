@@ -240,6 +240,23 @@
     overflow: hidden;
 }
 
+/* Alternative: Scrolling Screenshot (statt iFrame) */
+.ref-screenshot {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE and Edge */
+}
+.ref-screenshot::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+.ref-screenshot img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
 /* Desktop-Ansicht erzwingen: iFrame rendert bei 1440px Breite
    und wird per transform auf die Container-Breite skaliert */
 .ref-iframe-wrap iframe {
