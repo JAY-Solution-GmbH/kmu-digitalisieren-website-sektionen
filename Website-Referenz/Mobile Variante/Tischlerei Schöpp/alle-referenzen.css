@@ -1,0 +1,228 @@
+/* ===================================================================
+   ALLE REFERENZEN – Mobile Variante
+   Ohne iFrame-Einbettungen und ohne CTA-Buttons
+   Krallinger Bau · Helvetic Home · Wagenwelt · Tischlerei Schöpp
+   =================================================================== */
+
+/* ===== Wrapper für die gesamte Referenz-Sektion ===== */
+.cs-referenzen-container {
+    font-family: 'Cabin Condensed', sans-serif;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+/* ===== Einzelne Referenz-Sektion ===== */
+.cs-section {
+    font-family: 'Cabin Condensed', sans-serif;
+    color: #000;
+    background-color: #ffffff;
+    padding: 60px 0 0 0;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-size: 16px;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+/* ===== Oberes Grid (Info + Zitat) ===== */
+.cs-top-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 0;
+    align-items: stretch;
+}
+
+.cs-info-side {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.cs-label-wrapper {
+    margin-bottom: 15px;
+}
+
+.cs-industry-label {
+    display: inline-block;
+    background-color: #f2f2f2;
+    color: #333333;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease;
+}
+
+.cs-industry-label:hover {
+    background-color: #e6e6e6;
+}
+
+.cs-info-side h3 {
+    font-size: 2.2rem;
+    margin: 0 0 20px 0;
+    color: #191B41;
+    line-height: 1.1;
+}
+
+/* ===== Meta-Info / Fakten-Box ===== */
+.cs-meta-info {
+    background-color: #f0f2f5;
+    border-left: 4px solid #191B41;
+    padding: 20px;
+    border-radius: 0 16px 16px 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.cs-meta-info:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    transform: translateX(3px);
+}
+
+.cs-meta-info p {
+    margin: 0 0 8px 0;
+    line-height: 1.5;
+}
+
+.cs-meta-info p:last-child {
+    margin-bottom: 0;
+}
+
+.cs-meta-info strong {
+    color: #191B41;
+}
+
+/* ===== "Website öffnen" Link ===== */
+.cs-website-link {
+    color: #191B41;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s ease, letter-spacing 0.3s ease;
+}
+
+.cs-website-link:hover {
+    color: rgb(70, 68, 111);
+    letter-spacing: 0.5px;
+}
+
+/* ===== Zitat-Kachel ===== */
+.cs-quote-side {
+    display: flex;
+}
+
+.cs-quote {
+    margin: 0;
+    padding: 30px;
+    background: radial-gradient(circle at center, rgb(70, 68, 111) 0%, rgb(0, 0, 26) 100%);
+    color: #ffffff;
+    border-radius: 16px;
+    font-size: 1.15rem;
+    line-height: 1.6;
+    font-style: italic;
+    text-align: left;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+                box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.cs-quote:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+}
+
+.cs-quote cite {
+    display: block;
+    margin-top: 20px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/* ===== Dezente Trennlinie zwischen Sektionen ===== */
+.cs-section-divider {
+    width: 100%;
+    height: 1px;
+    margin: 50px 0 0 0;
+    background: linear-gradient(
+        to right,
+        rgba(25, 27, 65, 0.03),
+        rgba(25, 27, 65, 0.12) 50%,
+        rgba(25, 27, 65, 0.03)
+    );
+}
+
+/* ===== Scroll-Animationen ===== */
+.cs-animate {
+    opacity: 1;
+    transform: translateX(0) scale(1) translateY(0);
+    transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cs-animate.js-ready {
+    opacity: 0;
+    transform: translateX(110px) scale(0.92) translateY(16px);
+    will-change: transform, opacity;
+}
+
+.cs-animate.is-visible {
+    opacity: 1;
+    transform: translateX(0) scale(1) translateY(0);
+    will-change: auto;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 900px) {
+    .cs-referenzen-container {
+        padding: 0 16px;
+    }
+
+    .cs-section {
+        padding: 40px 0 0 0;
+    }
+
+    .cs-top-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .cs-quote:hover,
+    .cs-meta-info:hover {
+        transform: none;
+    }
+
+    .cs-section-divider {
+        margin: 36px 0 0 0;
+    }
+}
+
+@media (max-width: 640px) {
+    .cs-referenzen-container {
+        padding: 0 14px;
+    }
+
+    .cs-section {
+        padding: 30px 0 0 0;
+        font-size: 15px;
+    }
+
+    .cs-info-side h3 {
+        font-size: 1.6rem;
+    }
+
+    .cs-section-divider {
+        margin: 28px 0 0 0;
+    }
+}

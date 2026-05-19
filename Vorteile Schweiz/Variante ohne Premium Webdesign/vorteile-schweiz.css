@@ -1,0 +1,156 @@
+
+/* ===== Container ===== */
+.features-section {
+    background-color: #ffffff;
+    padding: 40px 20px;
+    font-family: 'Cabin Condensed', sans-serif;
+    color: #000000;
+    overflow: hidden; /* Verhindert horizontalen Scrollbar während der Animation */
+}
+
+/* ===== Grid ===== */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+    perspective: 1000px; /* Ermöglicht den 3D-Tilt-Effekt */
+}
+
+/* ===== Karte – Startzustand (verborgen, rechts versetzt) ===== */
+.feature-card {
+    background: radial-gradient(circle at center, rgb(70, 68, 111) 0%, rgb(0, 0, 26) 100%);
+    border-radius: 16px;
+    padding: 40px 30px;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    position: relative;
+    overflow: hidden;
+    cursor: default;
+
+    /* Startzustand: rechts versetzt + leicht skaliert + unsichtbar */
+    opacity: 0;
+    transform: translateX(90px) scale(0.94);
+    transition:
+        opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.3s ease;
+
+    /* 3D-Tilt per JS – eigene schnelle Transition */
+    will-change: transform, opacity;
+}
+
+/* Innerer Glanz-Overlay */
+.feature-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.07) 0%,
+        rgba(255, 255, 255, 0) 60%
+    );
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.feature-card:hover::before {
+    opacity: 1;
+}
+
+/* Alles in der Karte über dem Overlay */
+.feature-card > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* ===== Eingeblendet (via JS) ===== */
+.feature-card.is-visible {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+}
+
+/* ===== Hover: 3D-Tilt wird per JS inline gesetzt ===== */
+.feature-card.is-visible:hover {
+    box-shadow: 0 22px 50px rgba(25, 27, 65, 0.45);
+}
+
+/* ===== Icon ===== */
+.icon-wrapper {
+    margin-bottom: 20px;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.feature-card.is-visible:hover .icon-wrapper {
+    transform: scale(1.2) translateY(-4px);
+}
+
+.feature-icon {
+    width: 32px;
+    height: 32px;
+    color: #ffffff;
+    filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.3));
+    transition: filter 0.3s ease;
+}
+
+.feature-card.is-visible:hover .feature-icon {
+    filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.6));
+}
+
+/* ===== Typografie ===== */
+.feature-card h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+}
+
+.feature-card p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 0;
+    opacity: 0.85;
+    transition: opacity 0.3s ease;
+}
+
+.feature-card.is-visible:hover p {
+    opacity: 1;
+}
+
+/* ===== Dezente Unterstrich-Linie unter dem Titel ===== */
+.feature-card h3::after {
+    content: '';
+    display: block;
+    width: 0%;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 2px;
+    margin: 6px auto 0;
+    transition: width 0.4s ease;
+}
+
+.feature-card.is-visible:hover h3::after {
+    width: 40%;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Auf Mobile kein 3D-Tilt, aber Slide-in bleibt */
+    .feature-card.is-visible:hover {
+        transform: translateY(-4px) !important;
+        box-shadow: 0 14px 35px rgba(25, 27, 65, 0.3);
+    }
+}
